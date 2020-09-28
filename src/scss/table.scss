@@ -59,7 +59,7 @@
 
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $main-color;
       z-index: 2;
     }
   }
