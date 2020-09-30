@@ -22,6 +22,14 @@ class DOM {
 			: this.$el.appendChild(node);
 	}
 
+	on(eventType, callback) {
+		this.$el.addEventListener(eventType, callback);
+	}
+
+	off(eventType, callback) {
+		this.$el.removeEventListener(eventType, callback);
+	}
+
 	clear() {
 		this.html('');
 		return this;
