@@ -3,12 +3,15 @@ const CODES = {
 	Z: 90
 };
 
-function toCell() {
-	return `<div class="cell" contenteditable></div>`;
+function toCell(_, index) {
+	return `<div class="cell" data-col="${index}" contenteditable></div>`;
 }
 
-function toColumn(col) {
-	return `<div class="column">${col}</div>`;
+function toColumn(col, index) {
+	return `<div class="column" data-type="resizable" data-col="${index}">
+		${col}
+		<div class="col-resize" data-resize="col"></div>
+	</div>`;
 }
 
 function toChar(_, index) {
@@ -16,12 +19,16 @@ function toChar(_, index) {
 }
 
 function createRow(index, content = '') {
-	return `
-		<div class="row">
-      <div class="row-info">${index}</div>
+	const resize = index
+		? '<div class="row-resize" data-resize="row"></div>'
+		: '';
+	return `<div class="row"  data-type="resizable">
+      <div class="row-info">
+				${index}
+				${resize}
+      </div>
       <div class="row-data">${content}</div>
-    </div>
-	`.trim();
+    </div>`;
 }
 
 export function createTable(rowsCount = 100) {
@@ -38,10 +45,13 @@ export function createTable(rowsCount = 100) {
 
 	for (let i = 1; i <= rowsCount; i++) {
 		const cells = new Array(colsCount)
-			.fill(toCell())
+			.fill('')
+			.map(toCell)
 			.join('');
 
 		rows.push(createRow(i, cells));
 	}
 	return rows.join('');
 }
+// 193 msScripting
+// 3776 msRendering

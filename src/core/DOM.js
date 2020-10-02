@@ -34,6 +34,22 @@ class DOM {
 		this.html('');
 		return this;
 	}
+
+	get data() {
+		return this.$el.dataset;
+	}
+
+	findAll(selector) {
+		return this.$el.querySelectorAll(selector);
+	}
+
+	closest(selector) {
+		return $(this.$el.closest(selector));
+	}
+
+	getCoords() {
+		return this.$el.getBoundingClientRect();
+	}
 }
 
 export default function $(selector) {
