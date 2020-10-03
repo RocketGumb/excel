@@ -31,7 +31,7 @@ function createRow(index, content = '') {
     </div>`;
 }
 
-export function createTable(rowsCount = 100) {
+export default function createTable(rowsCount = 100) {
 	const colsCount = CODES.Z - CODES.A + 1;
 	const rows = new Array(rowsCount);
 
@@ -53,5 +53,3 @@ export function createTable(rowsCount = 100) {
 	}
 	return rows.join('');
 }
-// 193 msScripting
-// 3776 msRendering

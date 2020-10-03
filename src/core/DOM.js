@@ -39,6 +39,10 @@ class DOM {
 		return this.$el.dataset;
 	}
 
+	find(selector) {
+		return this.$el.querySelector(selector);
+	}
+
 	findAll(selector) {
 		return this.$el.querySelectorAll(selector);
 	}
@@ -49,6 +53,14 @@ class DOM {
 
 	getCoords() {
 		return this.$el.getBoundingClientRect();
+	}
+
+	css(styles = {}) {
+		Object
+			.keys(styles)
+			.forEach(key => {
+				this.$el.style[key] = styles[key];
+			});
 	}
 }
 
